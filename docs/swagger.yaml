@@ -1,0 +1,122 @@
+basePath: /
+definitions:
+  domains.Product:
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      price:
+        type: number
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: Exemplo de API CRUD com Swagger no Gin
+  title: API Go Gin CRUD
+  version: "1.0"
+paths:
+  /mongo/api/v1/products:
+    get:
+      consumes:
+      - application/json
+      description: Retorna todos os produtos cadastrados
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/domains.Product'
+            type: array
+      summary: Lista produtos
+      tags:
+      - Products
+  /mongo/api/v1/products/:id:
+    delete:
+      consumes:
+      - application/json
+      description: Deleta um produto específico pelo seu ID
+      parameters:
+      - description: ID do produto
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+      summary: deleta um produto
+      tags:
+      - Products
+    get:
+      consumes:
+      - application/json
+      description: Retorna um produto específico pelo seu ID
+      parameters:
+      - description: ID do produto
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/domains.Product'
+      summary: retorna um produto
+      tags:
+      - Products
+    post:
+      consumes:
+      - application/json
+      description: Cria um novo produto
+      parameters:
+      - description: Dados do produto
+        in: body
+        name: product
+        required: true
+        schema:
+          $ref: '#/definitions/domains.Product'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/domains.Product'
+      summary: cria um produto
+      tags:
+      - Products
+    put:
+      consumes:
+      - application/json
+      description: Atualiza um produto específico pelo seu ID
+      parameters:
+      - description: ID do produto
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Dados do produto
+        in: body
+        name: product
+        required: true
+        schema:
+          $ref: '#/definitions/domains.Product'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/domains.Product'
+      summary: atualiza um produto
+      tags:
+      - Products
+swagger: "2.0"
