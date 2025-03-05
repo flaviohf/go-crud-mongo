@@ -7,5 +7,5 @@
 ```go run .\cmd\web\main.go```
 
 **Para gerar (ou derrubar) o container docker**  
-```docker compose up -d --build```
+```docker compose up -d --build```  
 ```docker compose down```
